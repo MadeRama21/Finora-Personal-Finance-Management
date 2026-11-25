@@ -6,6 +6,7 @@ import com.finora.model.Category;
 import com.finora.model.CategoryType;
 import com.finora.model.Transaction;
 import com.finora.util.CurrencyFormatter;
+import com.finora.util.DialogStyles;
 import com.finora.util.TableUtils;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -285,6 +286,7 @@ public class TransactionsController {
         dialog.setTitle(editing ? "Ubah Transaksi" : "Tambah Transaksi");
         dialog.setHeaderText(null);
         dialog.setDialogPane(dialogPane);
+        DialogStyles.apply(dialogPane);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
         Button saveButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
@@ -326,6 +328,7 @@ public class TransactionsController {
                 "Hapus transaksi ini? Tindakan ini tidak dapat dibatalkan.",
                 ButtonType.OK, ButtonType.CANCEL);
         confirmation.setTitle("Hapus Transaksi");
+        DialogStyles.apply(confirmation.getDialogPane());
         ((Button) confirmation.getDialogPane().lookupButton(ButtonType.OK)).setText("Hapus");
         ((Button) confirmation.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Batal");
         confirmation.setHeaderText(null);
@@ -387,6 +390,7 @@ public class TransactionsController {
         Alert alert = new Alert(type, message, ButtonType.OK);
         alert.setTitle(title);
         alert.setHeaderText(null);
+        DialogStyles.apply(alert.getDialogPane());
         alert.showAndWait();
     }
 }

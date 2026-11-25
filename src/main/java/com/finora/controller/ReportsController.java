@@ -4,7 +4,9 @@ import com.finora.dao.TransactionDao;
 import com.finora.model.CategorySummary;
 import com.finora.model.DashboardData;
 import com.finora.model.MonthlyTotal;
+import com.finora.util.ChartPalette;
 import com.finora.util.CurrencyFormatter;
+import com.finora.util.DialogStyles;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -198,6 +200,7 @@ public class ReportsController {
             expenseSeries.getData().add(new XYChart.Data<>(label, total.expense().doubleValue()));
         }
         monthlyChart.getData().setAll(List.of(incomeSeries, expenseSeries));
+        ChartPalette.colorMonthly(incomeSeries, expenseSeries);
     }
 
     private void renderCategoryChart(List<CategorySummary> summaries) {
@@ -209,6 +212,7 @@ public class ReportsController {
             amounts.add(summary.amount());
         }
         categoryChart.setData(pieData);
+        ChartPalette.colorSlices(pieData);
 
         for (int i = 0; i < pieData.size(); i++) {
             PieChart.Data slice = pieData.get(i);
@@ -266,6 +270,7 @@ public class ReportsController {
         Alert alert = new Alert(type, message, ButtonType.OK);
         alert.setTitle(title);
         alert.setHeaderText(null);
+        DialogStyles.apply(alert.getDialogPane());
         alert.showAndWait();
     }
 

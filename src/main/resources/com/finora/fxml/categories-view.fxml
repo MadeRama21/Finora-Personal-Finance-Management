@@ -9,16 +9,13 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_LEFT" spacing="16.0" styleClass="page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finora.controller.CategoriesController">
+<VBox alignment="TOP_LEFT" spacing="20.0" styleClass="page" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finora.controller.CategoriesController">
     <padding>
-        <Insets bottom="32.0" left="32.0" right="32.0" top="24.0" />
+        <Insets bottom="40.0" left="32.0" right="32.0" top="16.0" />
     </padding>
 
     <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="page-toolbar">
-        <VBox spacing="4.0">
-            <Label styleClass="page-section-title" text="Kategori" />
-            <Label fx:id="statusLabel" styleClass="table-status" text="Siap" />
-        </VBox>
+        <Label fx:id="statusLabel" styleClass="table-status" text="Siap" />
         <Region HBox.hgrow="ALWAYS" />
         <Button mnemonicParsing="false" onAction="#openAddCategoryDialog" styleClass="primary-button" text="Tambah Kategori" />
     </HBox>

@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="page-scroll" vbarPolicy="AS_NEEDED" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finora.controller.DashboardController">
-    <VBox alignment="TOP_LEFT" spacing="16.0" styleClass="page">
+    <VBox alignment="TOP_LEFT" spacing="20.0" styleClass="page">
         <padding>
-            <Insets bottom="32.0" left="32.0" right="32.0" top="24.0" />
+            <Insets bottom="40.0" left="32.0" right="32.0" top="16.0" />
         </padding>
 
         <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="page-toolbar">
@@ -26,10 +26,13 @@
                 <Label styleClass="page-section-title" text="Ringkasan" />
                 <Label fx:id="statusLabel" styleClass="table-status" text="Memuat ringkasan..." />
             </VBox>
-            <Region HBox.hgrow="ALWAYS" />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="filter-bar">
             <DatePicker fx:id="dateFrom" onAction="#applyFilters" prefWidth="140.0" promptText="Dari" />
             <Label styleClass="filter-separator" text="s.d." />
             <DatePicker fx:id="dateTo" onAction="#applyFilters" prefWidth="140.0" promptText="Sampai" />
+            <Region HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#applyFilters" styleClass="filter-button" text="Terapkan" />
             <Button mnemonicParsing="false" onAction="#clearFilters" styleClass="secondary-button" text="Bersihkan" />
         </HBox>
@@ -41,11 +44,11 @@
             </VBox>
             <VBox HBox.hgrow="ALWAYS" spacing="8.0" styleClass="stat-card">
                 <Label styleClass="stat-label" text="Pemasukan" />
-                <Label fx:id="incomeLabel" styleClass="stat-value income-value" text="—" />
+                <Label fx:id="incomeLabel" styleClass="stat-value, income-value" text="—" />
             </VBox>
             <VBox HBox.hgrow="ALWAYS" spacing="8.0" styleClass="stat-card">
                 <Label styleClass="stat-label" text="Pengeluaran" />
-                <Label fx:id="expenseLabel" styleClass="stat-value expense-value" text="—" />
+                <Label fx:id="expenseLabel" styleClass="stat-value, expense-value" text="—" />
             </VBox>
         </HBox>
 

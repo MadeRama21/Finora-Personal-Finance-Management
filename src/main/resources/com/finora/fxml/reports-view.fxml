@@ -11,47 +11,54 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="page-scroll" vbarPolicy="AS_NEEDED" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finora.controller.ReportsController">
-    <VBox alignment="TOP_LEFT" spacing="16.0" styleClass="page">
+    <VBox alignment="TOP_LEFT" spacing="20.0" styleClass="page">
         <padding>
-            <Insets bottom="32.0" left="32.0" right="32.0" top="24.0" />
+            <Insets bottom="40.0" left="32.0" right="32.0" top="16.0" />
         </padding>
 
         <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="page-toolbar">
-            <VBox spacing="4.0">
-                <Label styleClass="page-section-title" text="Laporan" />
-                <Label fx:id="statusLabel" styleClass="table-status" text="Memuat laporan..." />
-            </VBox>
-            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="statusLabel" styleClass="table-status" text="Memuat laporan..." />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="filter-bar">
             <DatePicker fx:id="dateFrom" onAction="#applyFilters" prefWidth="140.0" promptText="Dari" />
             <Label styleClass="filter-separator" text="s.d." />
             <DatePicker fx:id="dateTo" onAction="#applyFilters" prefWidth="140.0" promptText="Sampai" />
+            <Region HBox.hgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#applyFilters" styleClass="filter-button" text="Terapkan" />
             <Button mnemonicParsing="false" onAction="#clearFilters" styleClass="secondary-button" text="Bersihkan" />
         </HBox>
 
-        <HBox spacing="16.0" styleClass="stats-row">
-            <VBox HBox.hgrow="ALWAYS" spacing="8.0" styleClass="stat-card">
+        <GridPane hgap="16.0" vgap="16.0" styleClass="stats-row">
+            <columnConstraints>
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+                <ColumnConstraints hgrow="ALWAYS" percentWidth="50.0" />
+            </columnConstraints>
+
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" maxWidth="Infinity" spacing="8.0" styleClass="stat-card">
                 <Label styleClass="stat-label" text="Total Pemasukan" />
-                <Label fx:id="incomeLabel" styleClass="stat-value income-value" text="—" />
+                <Label fx:id="incomeLabel" styleClass="stat-value, income-value" text="—" />
             </VBox>
-            <VBox HBox.hgrow="ALWAYS" spacing="8.0" styleClass="stat-card">
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="Infinity" spacing="8.0" styleClass="stat-card">
                 <Label styleClass="stat-label" text="Total Pengeluaran" />
-                <Label fx:id="expenseLabel" styleClass="stat-value expense-value" text="—" />
+                <Label fx:id="expenseLabel" styleClass="stat-value, expense-value" text="—" />
             </VBox>
-            <VBox HBox.hgrow="ALWAYS" spacing="8.0" styleClass="stat-card">
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" maxWidth="Infinity" spacing="8.0" styleClass="stat-card">
                 <Label styleClass="stat-label" text="Saldo Bersih" />
                 <Label fx:id="netLabel" styleClass="stat-value" text="—" />
             </VBox>
-            <VBox HBox.hgrow="ALWAYS" spacing="8.0" styleClass="stat-card">
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" spacing="8.0" styleClass="stat-card">
                 <Label styleClass="stat-label" text="Rasio Tabungan" />
-                <Label fx:id="savingsLabel" styleClass="stat-value savings-value" text="—" />
+                <Label fx:id="savingsLabel" styleClass="stat-value, savings-value" text="—" />
             </VBox>
-        </HBox>
+        </GridPane>
 
         <HBox VBox.vgrow="ALWAYS" spacing="16.0" styleClass="charts-row">
             <VBox HBox.hgrow="ALWAYS" styleClass="chart-card">
@@ -71,7 +78,7 @@
 
         <VBox spacing="10.0" styleClass="table-card">
             <Label styleClass="page-section-title" text="Perbandingan Bulanan" />
-            <TableView fx:id="monthlyTable" prefHeight="200.0">
+            <TableView fx:id="monthlyTable" prefHeight="200.0" styleClass="center-table">
                 <columns>
                     <TableColumn fx:id="monthlyMonthColumn" prefWidth="150.0" text="Bulan" />
                     <TableColumn fx:id="monthlyIncomeColumn" prefWidth="170.0" text="Pemasukan" />

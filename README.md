@@ -7,7 +7,7 @@ expenses, set monthly budgets, and understand your spending through a visual das
 ![JavaFX](https://img.shields.io/badge/JavaFX-21.0.5-1B6AC6)
 ![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?logo=mysql&logoColor=white)
 ![Maven](https://img.shields.io/badge/Maven-3.9+-C71A36?logo=apachemaven&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-16865B)
+![License](https://img.shields.io/badge/License-MIT-141413)
 
 ![Dashboard](screenshots/dashboard.png)
 
@@ -18,6 +18,17 @@ All data is stored in a local MySQL database, and every financial value is
 calculated from real records using `BigDecimal`.
 
 The application interface is in Indonesian and uses IDR (Indonesian Rupiah).
+
+## Design
+
+The interface uses a warm editorial direction rather than a flat dashboard look:
+
+- Canvas cream `#F3F0EE`, lifted surfaces `#FCFBFA`, cards and inputs `#FFFFFF`.
+- Primary action is Ink Black `#141413` with cream text; main text `#141413`, secondary `#696969`.
+- Signal Orange `#CF4500` is reserved for focus rings and over-budget states.
+- Expense and warning text use Clay Brown `#9A3A0A` for AA contrast at body size.
+- Radius 20 for buttons, cards, and filter bars; pill radius for inputs and nav items.
+- Borders come before shadows; shadows stay on floating surfaces only.
 
 ## Features
 
@@ -37,6 +48,8 @@ The application interface is in Indonesian and uses IDR (Indonesian Rupiah).
 | Categories | Reports |
 |---|---|
 | ![Categories](screenshots/categories.png) | ![Reports](screenshots/reports.png) |
+
+> These screenshots show the previous visual version and are being refreshed.
 
 ## Technology Stack
 
