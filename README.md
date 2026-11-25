@@ -49,8 +49,6 @@ The interface uses a warm editorial direction rather than a flat dashboard look:
 |---|---|
 | ![Categories](screenshots/categories.png) | ![Reports](screenshots/reports.png) |
 
-> These screenshots show the previous visual version and are being refreshed.
-
 ## Technology Stack
 
 | Technology | Version | Purpose |
