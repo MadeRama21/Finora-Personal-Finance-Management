@@ -83,10 +83,12 @@ git clone https://github.com/MadeRama21/Finora-Financial-Management-Application.
 cd Finora-Financial-Management-Application
 ```
 
-### 2. Create the database
+### 2. Create and initialize the database
 
 The database is managed **manually**. The Java application never creates or
-modifies the schema, and this script must be run by hand.
+modifies the schema, so these steps must be run by hand once.
+
+#### 2.1 Create the database
 
 Open MySQL Workbench (or the `mysql` CLI) and execute:
 
@@ -96,14 +98,46 @@ CREATE DATABASE finora_db
     COLLATE utf8mb4_unicode_ci;
 ```
 
-Then run the setup script:
+#### 2.2 Run the setup script
+
+Select `finora_db`, then run:
 
 ```text
 database/finora_db.sql
 ```
 
-It creates the three tables, foreign keys, the
-`UNIQUE (category_id, month, year)` budget constraint, and the default categories.
+The script creates the following objects:
+
+| Object | What it contains |
+|---|---|
+| `categories` | Income and expense categories (`INCOME` / `EXPENSE`) |
+| `transactions` | Financial records: category, amount, description, date |
+| `budgets` | One monthly limit per expense category (`UNIQUE (category_id, month, year)`) |
+| Default data | 13 starter categories (5 income, 8 expense) |
+
+Default categories inserted by the script:
+
+- **Income:** Salary, Freelance, Business, Investment, Other Income
+- **Expense:** Food & Beverage, Transportation, Shopping, Entertainment,
+  Health, Education, Bills, Other Expenses
+
+You can rename, add, or delete categories later from the **Categories** page.
+
+#### 2.3 Verify the setup
+
+Run this to confirm everything was created:
+
+```sql
+USE finora_db;
+SHOW TABLES;
+SELECT COUNT(*) FROM categories;
+```
+
+Expected result: **3 tables** (`categories`, `transactions`, `budgets`) and
+**13 rows** in `categories`.
+
+> Run `database/finora_db.sql` only on a fresh database. It creates tables
+> without `IF NOT EXISTS`, so re-running it on an existing database will fail.
 
 ### 3. Configure the connection
 
@@ -208,15 +242,13 @@ Finora/
 
 ## Database Schema
 
-Finora uses three tables in `finora_db`:
+Full column-level details are in `docs/DATABASE_DESIGN.md`. Summary:
 
-| Table | Purpose |
+| Table | Key columns |
 |---|---|
-| `categories` | Income and expense categories (`INCOME` / `EXPENSE`) |
-| `transactions` | Financial records linked to a category |
-| `budgets` | Monthly spending limits per expense category |
-
-See `docs/DATABASE_DESIGN.md` for columns, constraints, and relationships.
+| `categories` | `id`, `name`, `type`, `icon` |
+| `transactions` | `id`, `category_id` → `categories`, `amount`, `description`, `transaction_date`, `created_at` |
+| `budgets` | `id`, `category_id` → `categories`, `amount`, `month`, `year` |
 
 ## Documentation
 
