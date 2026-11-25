@@ -1,0 +1,254 @@
+# Finora — Personal Finance Manager
+
+A desktop personal finance manager built with JavaFX and MySQL. Track income and
+expenses, set monthly budgets, and understand your spending through a visual dashboard.
+
+![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)
+![JavaFX](https://img.shields.io/badge/JavaFX-21.0.5-1B6AC6)
+![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?logo=mysql&logoColor=white)
+![Maven](https://img.shields.io/badge/Maven-3.9+-C71A36?logo=apachemaven&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-16865B)
+
+![Dashboard](docs/screenshots/dashboard.png)
+
+## Overview
+
+Finora is a single-user desktop application for managing personal finances.
+All data is stored in a local MySQL database, and every financial value is
+calculated from real records using `BigDecimal`.
+
+The application interface is in Indonesian and uses IDR (Indonesian Rupiah).
+
+## Features
+
+- **Dashboard** — total balance, income, expenses, income vs. expense chart,
+  expense distribution, and recent transactions.
+- **Transactions** — add, edit, delete, search, and filter by category, type, or date range.
+- **Categories** — organize income and expense categories with safe deletion.
+- **Budgets** — monthly spending limits with progress, remaining amount, and utilization.
+- **Reports** — period summaries, savings rate, monthly comparison, and expense distribution.
+
+## Screenshots
+
+| Transactions | Budgets |
+|---|---|
+| ![Transactions](docs/screenshots/transactions.png) | ![Budgets](docs/screenshots/budgets.png) |
+
+| Categories | Reports |
+|---|---|
+| ![Categories](docs/screenshots/categories.png) | ![Reports](docs/screenshots/reports.png) |
+
+## Technology Stack
+
+| Technology | Version | Purpose |
+|---|---|---|
+| Java | 21 | Programming language |
+| JavaFX | 21.0.5 | Desktop UI |
+| FXML | — | UI layout |
+| JavaFX CSS | — | UI styling |
+| MySQL | 8 | Database |
+| JDBC (MySQL Connector/J) | 8.0.33 | Database access |
+| Maven | 3.9+ | Build and dependency management |
+
+## Architecture
+
+Finora uses a deliberately simple structure without extra frameworks:
+
+- `config` — JDBC connection.
+- `model` — data classes.
+- `dao` — SQL queries and CRUD operations.
+- `controller` — UI logic.
+- `util` — reusable helpers.
+- `resources` — FXML and CSS.
+
+## Prerequisites
+
+- JDK 21
+- Maven 3.9+
+- MySQL Server 8 (and optionally MySQL Workbench)
+
+Verify your setup:
+
+```bash
+java -version
+mvn -version
+```
+
+## Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/MadeRama21/Finora-Financial-Management-Application.git
+cd Finora-Financial-Management-Application
+```
+
+### 2. Create the database
+
+The database is managed **manually**. The Java application never creates or
+modifies the schema, and this script must be run by hand.
+
+Open MySQL Workbench (or the `mysql` CLI) and execute:
+
+```sql
+CREATE DATABASE finora_db
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+```
+
+Then run the setup script:
+
+```text
+database/finora_db.sql
+```
+
+It creates the three tables, foreign keys, the
+`UNIQUE (category_id, month, year)` budget constraint, and the default categories.
+
+### 3. Configure the connection
+
+Credentials are read from environment variables, so they never live in source code.
+
+| Variable | Default |
+|---|---|
+| `FINORA_DB_URL` | `jdbc:mysql://localhost:3306/finora_db` |
+| `FINORA_DB_USER` | `root` |
+| `FINORA_DB_PASSWORD` | *(empty)* |
+
+**PowerShell**
+
+```powershell
+$env:FINORA_DB_USER = "your_user"
+$env:FINORA_DB_PASSWORD = "your_password"
+```
+
+**Command Prompt**
+
+```bat
+set FINORA_DB_USER=your_user
+set FINORA_DB_PASSWORD=your_password
+```
+
+**macOS / Linux**
+
+```bash
+export FINORA_DB_USER="your_user"
+export FINORA_DB_PASSWORD="your_password"
+```
+
+> Never commit database credentials to Git.
+
+### 4. Run the application
+
+```bash
+mvn clean javafx:run
+```
+
+IntelliJ IDEA users can also run `com.finora.FinoraApplication` directly.
+
+## Sample Data (Optional)
+
+`database/sample_data.sql` inserts demo transactions for the last three months
+and current-month budgets. Every record uses a `DEMO | ` description prefix so
+it is easy to identify and remove.
+
+```text
+1. Select finora_db in MySQL Workbench.
+2. Run database/finora_db.sql on a fresh database (skip if already set up).
+3. Run database/sample_data.sql.
+4. Restart Finora to see populated charts and tables.
+```
+
+If an older database still has `UNIQUE (category_id)` on `budgets`, run
+`database/fix_budget_constraint.sql` first. It includes an inspection query so
+you can verify the constraint before changing anything.
+
+## Build
+
+Compile and package the project:
+
+```bash
+mvn clean package
+```
+
+The application is launched through the JavaFX Maven plugin with
+`mvn javafx:run`.
+
+## Project Structure
+
+```text
+Finora/
+├── database/
+│   ├── finora_db.sql
+│   ├── fix_budget_constraint.sql
+│   └── sample_data.sql
+├── docs/
+│   ├── screenshots/
+│   ├── PROJECT_OVERVIEW.md
+│   ├── DATABASE_DESIGN.md
+│   ├── UI_UX_GUIDELINES.md
+│   ├── DEVELOPMENT_ROADMAP.md
+│   └── DEMO_GUIDE.md
+├── src/main/
+│   ├── java/com/finora/
+│   │   ├── FinoraApplication.java
+│   │   ├── config/
+│   │   ├── controller/
+│   │   ├── dao/
+│   │   ├── model/
+│   │   └── util/
+│   └── resources/com/finora/
+│       ├── css/
+│       └── fxml/
+├── AGENTS.md
+├── LICENSE
+├── README.md
+└── pom.xml
+```
+
+## Database Schema
+
+Finora uses three tables in `finora_db`:
+
+| Table | Purpose |
+|---|---|
+| `categories` | Income and expense categories (`INCOME` / `EXPENSE`) |
+| `transactions` | Financial records linked to a category |
+| `budgets` | Monthly spending limits per expense category |
+
+See `docs/DATABASE_DESIGN.md` for columns, constraints, and relationships.
+
+## Documentation
+
+- `docs/PROJECT_OVERVIEW.md` — goals, scope, features, business rules.
+- `docs/DATABASE_DESIGN.md` — tables, columns, constraints.
+- `docs/UI_UX_GUIDELINES.md` — colors, typography, layout rules.
+- `docs/DEVELOPMENT_ROADMAP.md` — development phases.
+- `docs/DEMO_GUIDE.md` — step-by-step walkthrough of every page.
+
+## Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| `Communications link failure` | Make sure MySQL Server is running and the URL/port are correct. |
+| `Access denied for user` | Check `FINORA_DB_USER` and `FINORA_DB_PASSWORD`. |
+| `Unknown database 'finora_db'` | Run `database/finora_db.sql` in MySQL Workbench. |
+| JavaFX runtime error on launch | Confirm JDK 21 is active and run through `mvn javafx:run`. |
+| Budget with the same category/month rejected | Apply `database/fix_budget_constraint.sql` to allow one budget per month. |
+
+## Project Status
+
+Version 1.0 is complete: all roadmap phases are finished, covering Categories,
+Transactions, Dashboard, Budgets, and Reports.
+
+The MySQL database remains managed manually. Finora only connects to an existing
+`finora_db` through JDBC and never alters its schema.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+## Author
+
+**Dwija** ([@MadeRama21](https://github.com/MadeRama21)) — created as an
+educational project for learning Java, JavaFX, and JDBC.

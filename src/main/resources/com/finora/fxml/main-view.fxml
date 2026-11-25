@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="720.0" prefWidth="1120.0" styleClass="app-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finora.controller.MainController">
+    <left>
+        <VBox prefWidth="244.0" styleClass="sidebar">
+            <VBox spacing="10.0" styleClass="brand-section">
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <StackPane styleClass="sidebar-logo-mark">
+                        <Label styleClass="sidebar-logo-letter" text="F" />
+                    </StackPane>
+                    <Label styleClass="sidebar-brand" text="Finora" />
+                </HBox>
+                <Label styleClass="sidebar-caption" text="Manajer Keuangan Pribadi" />
+            </VBox>
+
+            <VBox spacing="6.0" styleClass="navigation-section">
+                <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#showDashboard" styleClass="nav-button" text="Dasbor">
+                    <graphic>
+                        <Region styleClass="nav-icon icon-dashboard" />
+                    </graphic>
+                </Button>
+                <Button fx:id="transactionsButton" mnemonicParsing="false" onAction="#showTransactions" styleClass="nav-button" text="Transaksi">
+                    <graphic>
+                        <Region styleClass="nav-icon icon-transactions" />
+                    </graphic>
+                </Button>
+                <Button fx:id="budgetsButton" mnemonicParsing="false" onAction="#showBudgets" styleClass="nav-button" text="Anggaran">
+                    <graphic>
+                        <Region styleClass="nav-icon icon-budgets" />
+                    </graphic>
+                </Button>
+                <Button fx:id="categoriesButton" mnemonicParsing="false" onAction="#showCategories" styleClass="nav-button" text="Kategori">
+                    <graphic>
+                        <Region styleClass="nav-icon icon-categories" />
+                    </graphic>
+                </Button>
+                <Button fx:id="reportsButton" mnemonicParsing="false" onAction="#showReports" styleClass="nav-button" text="Laporan">
+                    <graphic>
+                        <Region styleClass="nav-icon icon-reports" />
+                    </graphic>
+                </Button>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS" />
+            <VBox styleClass="sidebar-footer">
+                <Label styleClass="sidebar-footer-text" text="Keuangan pribadi, lebih sederhana." wrapText="true" />
+            </VBox>
+        </VBox>
+    </left>
+    <top>
+        <HBox alignment="CENTER_LEFT" styleClass="header">
+            <VBox spacing="4.0">
+                <Label fx:id="pageTitle" styleClass="page-title" text="Dasbor" />
+                <Label fx:id="pageSubtitle" styleClass="page-subtitle" text="Ringkasan keuangan Anda" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <VBox alignment="CENTER_RIGHT" spacing="4.0">
+                <Label fx:id="dateLabel" styleClass="header-date" />
+                <Label styleClass="profile-indicator" text="Profil lokal" />
+            </VBox>
+        </HBox>
+    </top>
+    <center>
+        <StackPane styleClass="main-content">
+            <fx:include fx:id="dashboardPage" source="dashboard-view.fxml" />
+            <fx:include fx:id="transactionsPage" source="transactions-view.fxml" />
+            <fx:include fx:id="budgetsPage" source="budgets-view.fxml" />
+            <fx:include fx:id="categoriesPage" source="categories-view.fxml" />
+            <fx:include fx:id="reportsPage" source="reports-view.fxml" />
+        </StackPane>
+    </center>
+</BorderPane>

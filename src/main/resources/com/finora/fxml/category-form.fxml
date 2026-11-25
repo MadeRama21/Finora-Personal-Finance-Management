@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane prefWidth="440.0" styleClass="form-dialog" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finora.controller.CategoryFormController">
+    <content>
+        <VBox spacing="14.0" styleClass="form-content">
+            <padding>
+                <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
+            </padding>
+
+            <Label styleClass="form-section-title" text="Detail kategori" />
+
+            <GridPane hgap="12.0" vgap="10.0">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="70.0" prefWidth="80.0" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="220.0" />
+                </columnConstraints>
+
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="form-label" text="Nama" />
+                <TextField fx:id="nameField" GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="Infinity" promptText="contoh: Gaji" />
+
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="form-label" text="Tipe" />
+                <ComboBox fx:id="typeCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" />
+
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="form-label" text="Ikon" />
+                <TextField fx:id="iconField" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity" promptText="Opsional, misalnya dompet" />
+            </GridPane>
+
+            <Label fx:id="formError" managed="false" styleClass="form-error" visible="false" wrapText="true" />
+        </VBox>
+    </content>
+</DialogPane>

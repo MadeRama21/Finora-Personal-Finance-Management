@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<DialogPane prefWidth="440.0" styleClass="form-dialog" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finora.controller.BudgetFormController">
+    <content>
+        <VBox spacing="14.0" styleClass="form-content">
+            <padding>
+                <Insets bottom="8.0" left="4.0" right="4.0" top="8.0" />
+            </padding>
+
+            <Label styleClass="form-section-title" text="Detail anggaran" />
+
+            <GridPane hgap="12.0" vgap="10.0">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="90.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="ALWAYS" minWidth="240.0" />
+                </columnConstraints>
+
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="form-label" text="Kategori" />
+                <ComboBox fx:id="categoryCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="Infinity" promptText="Pilih kategori" />
+
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="form-label" text="Jumlah" />
+                <TextField fx:id="amountField" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity" promptText="contoh: 500000" />
+
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="form-label" text="Bulan" />
+                <ComboBox fx:id="monthCombo" GridPane.columnIndex="1" GridPane.rowIndex="2" maxWidth="Infinity" />
+
+                <Label GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="form-label" text="Tahun" />
+                <ComboBox fx:id="yearCombo" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity" />
+            </GridPane>
+
+            <Label fx:id="formError" managed="false" styleClass="form-error" visible="false" wrapText="true" />
+        </VBox>
+    </content>
+</DialogPane>
