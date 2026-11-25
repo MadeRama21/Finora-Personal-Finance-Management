@@ -216,13 +216,12 @@ Finora/
 │   ├── finora_db.sql
 │   ├── fix_budget_constraint.sql
 │   └── sample_data.sql
-├── docs/
-│   ├── screenshots/
-│   ├── PROJECT_OVERVIEW.md
-│   ├── DATABASE_DESIGN.md
-│   ├── UI_UX_GUIDELINES.md
-│   ├── DEVELOPMENT_ROADMAP.md
-│   └── DEMO_GUIDE.md
+├── screenshots/
+│   ├── dashboard.png
+│   ├── transactions.png
+│   ├── budgets.png
+│   ├── categories.png
+│   └── reports.png
 ├── src/main/
 │   ├── java/com/finora/
 │   │   ├── FinoraApplication.java
@@ -234,7 +233,6 @@ Finora/
 │   └── resources/com/finora/
 │       ├── css/
 │       └── fxml/
-├── AGENTS.md
 ├── LICENSE
 ├── README.md
 └── pom.xml
@@ -242,21 +240,13 @@ Finora/
 
 ## Database Schema
 
-Full column-level details are in `docs/DATABASE_DESIGN.md`. Summary:
+Full column-level details summary:
 
 | Table | Key columns |
 |---|---|
 | `categories` | `id`, `name`, `type`, `icon` |
 | `transactions` | `id`, `category_id` → `categories`, `amount`, `description`, `transaction_date`, `created_at` |
 | `budgets` | `id`, `category_id` → `categories`, `amount`, `month`, `year` |
-
-## Documentation
-
-- `docs/PROJECT_OVERVIEW.md` — goals, scope, features, business rules.
-- `docs/DATABASE_DESIGN.md` — tables, columns, constraints.
-- `docs/UI_UX_GUIDELINES.md` — colors, typography, layout rules.
-- `docs/DEVELOPMENT_ROADMAP.md` — development phases.
-- `docs/DEMO_GUIDE.md` — step-by-step walkthrough of every page.
 
 ## Troubleshooting
 

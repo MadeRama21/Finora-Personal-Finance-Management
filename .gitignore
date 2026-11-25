@@ -40,3 +40,7 @@ build/
 
 ### Tooling ###
 .codex/
+
+### Private notes ###
+AGENTS.md
+docs/
