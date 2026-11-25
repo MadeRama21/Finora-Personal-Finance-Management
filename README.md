@@ -79,8 +79,8 @@ mvn -version
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/MadeRama21/Finora-Financial-Management-Application.git
-cd Finora-Financial-Management-Application
+git clone https://github.com/MadeRama21/Finora-Personal-Finance-Management.git
+cd Finora-Personal-Finance-Management
 ```
 
 ### 2. Create and initialize the database
