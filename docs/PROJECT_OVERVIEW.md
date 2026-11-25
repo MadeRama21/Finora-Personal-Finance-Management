@@ -235,4 +235,4 @@ Additional delivery notes:
 - Manual SQL scripts in `database/` cover fresh setup, the budget month-uniqueness
   constraint, and optional demo data. The application never executes them.
 - `docs/DEMO_GUIDE.md` provides a step-by-step presentation walkthrough.
-- Screenshots are stored in `docs/screenshots/`.
+- Screenshots are stored in `../screenshots`.

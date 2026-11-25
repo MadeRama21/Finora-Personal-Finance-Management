@@ -9,7 +9,7 @@ expenses, set monthly budgets, and understand your spending through a visual das
 ![Maven](https://img.shields.io/badge/Maven-3.9+-C71A36?logo=apachemaven&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-16865B)
 
-![Dashboard](docs/screenshots/dashboard.png)
+![Dashboard](screenshots/dashboard.png)
 
 ## Overview
 
@@ -32,11 +32,11 @@ The application interface is in Indonesian and uses IDR (Indonesian Rupiah).
 
 | Transactions | Budgets |
 |---|---|
-| ![Transactions](docs/screenshots/transactions.png) | ![Budgets](docs/screenshots/budgets.png) |
+| ![Transactions](screenshots/transactions.png) | ![Budgets](screenshots/budgets.png) |
 
 | Categories | Reports |
 |---|---|
-| ![Categories](docs/screenshots/categories.png) | ![Reports](docs/screenshots/reports.png) |
+| ![Categories](screenshots/categories.png) | ![Reports](screenshots/reports.png) |
 
 ## Technology Stack
 
